@@ -1,0 +1,57 @@
+<template name="add">
+  <div class="add-container">
+    <form class="ui form segment add-form">
+      <div class="four fields">
+        <div class="field">
+          <label>客户经理: </label>
+          {{#if pmlist}}
+
+          {{/if}}
+          {{#if is_gm}}
+          <select class="ui dropdown" id="pmanager">
+            {{#each pmlist}}
+              <option value="{{this}}">{{this}}</option>
+            {{/each}}
+          </select>
+          {{else}}
+          <input id="pmanager" type="text" value="{{username}}" disabled>
+          {{/if}}
+        </div>
+        <div class="field">
+          <label>客户姓名: </label>
+          <input name="customer" type="text">
+        </div>
+        <div class="field">
+          <label>借出金额: </label>
+          <input name="amount" type="text">
+        </div>
+        <div class="field">
+          <label>分期付款次数: </label>
+          <input name="total-number" type="text">
+        </div>
+      </div>
+
+      {{> singlePayRow}}
+
+      {{#each payNumber}}
+        {{> singlePayRow}}
+      {{/each}}
+
+      <div class="ui error message"></div>
+      <div class="ui active blue fluid submit button">提交</div>
+    </form>
+  </div>
+</template>
+
+<template name="singlePayRow">
+  <div class="two fields singlePayRow">
+    <div class="field">
+      <label>金额: </label>
+      <input class="single-amount" type="text">
+    </div>
+    <div class="field">
+      <label>还款日期: </label>
+      <input class="pay-date form-control" type="text">
+    </div>
+  </div>
+</template>

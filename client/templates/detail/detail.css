@@ -1,0 +1,91 @@
+.confirm-modal {
+  padding:50px;
+}
+
+.error-msg {
+  display:none;
+}
+
+.error-msg.active {
+  display:block;
+}
+
+.total-unpaid-container {
+  text-align: center;
+  margin-top:60px;
+  font-size:16px;
+}
+
+.gm-check-unpaid {
+  display:block !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  margin-top:60px !important;
+}
+
+.pm-stats-table {
+  width:500px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  display:none;
+}
+
+.pm-stats-table.active {
+  display:table;
+}
+
+.edit-amount {
+  cursor:pointer;
+  color:black;
+  display:inline-block;
+  font-size:16px;
+}
+
+.amount-hidden-block {
+  display:none;
+}
+
+.amount-hidden-block.active {
+  display:block;
+}
+
+.error.message {
+  display:none;
+}
+
+.cancel-edit-btn, .confirm-edit-btn, .cancel-date-edit-btn, .confirm-date-edit-btn {
+  margin-top:10px !important;
+}
+
+.table-date {
+  font-size:16px;
+  color:black;
+}
+
+.table-date.pastDue {
+  color:#b71c1c;
+}
+
+.table-date.today {
+  color:#088A08;
+}
+
+.edit-date {
+  cursor:pointer;
+}
+
+.edit-date {
+  display: block;
+}
+
+.date-hidden-block {
+  display:none;
+}
+
+.date-hidden-block.active {
+  display:block;
+}
+
+.history_amount {
+  color:#A0A0A0;
+}

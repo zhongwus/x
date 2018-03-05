@@ -1,0 +1,45 @@
+<template name="searchBar">
+  <div class="ui top fixed menu">
+    <div class="item">
+      <div class="ui action input">
+        <input type="text" class="{{#if search_type 1}}shown{{/if}} search-customer-input" placeholder="输入客户名字...">
+        {{#if is_gm}}
+        <input type="text" class="{{#if search_type 2}}shown{{/if}} search-pm-input" placeholder="输入经理名字...">
+        {{/if}}
+        <input type="text" class="{{#if search_type 3}}shown{{/if}} search-date-input" placeholder="选择日期...">
+        <div class="ui basic floating dropdown button search-type-dropdown">
+          <div class="text">{{default_search_text}}</div>
+          <i class="dropdown icon"></i>
+          <div class="menu">
+            <div class="item">客户</div>
+            {{#if is_gm}}
+            <div class="item">经理</div>
+            {{/if}}
+            <div class="item">日期</div>
+          </div>
+        </div>
+        <div type="submit" class="ui button search-btn">搜索</div>
+      </div>
+    </div>
+    <div class="right menu">
+      <div class="item">
+        <button class="ui button menu-add-btn">添加客户</button>
+      </div>
+      <div class="item">
+        <button class="ui button menu-all-btn">全部</button>
+      </div>
+      <div class="item">
+        <button class="ui button overdue-check-btn">逾期(超过30天)</button>
+      </div>
+      <div class="item">
+        <button class="ui button history-check-btn">历史</button>
+      </div>
+      <div class="item">
+        <button class="ui button menu-user-btn">{{username}}</button>
+      </div>
+      <div class="item">
+        <button class="ui button logout-btn">退出</button>
+      </div>
+    </div>
+  </div>
+</template>

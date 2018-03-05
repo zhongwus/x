@@ -1,0 +1,135 @@
+<template name="detail">
+  {{#if is_gm}}
+    <button class="ui button gm-check-unpaid">查看客户经理总金额</button>
+    <table class='ui table pm-stats-table'>
+      <thead>
+        <tr><th class="ten wide">客户经理</th>
+        <th class="six wide">未还款金额</th>
+      </tr></thead>
+      <tbody>
+        {{#each pm_unpaid}}
+        <tr>
+          <td><a href="/detail/search/pm/{{pm_manager}}">{{pm_manager}}</a></td>
+          <td>{{total}}</td>
+        </tr>
+        {{/each}}
+        <tr>
+          <td>总金额</td>
+          <td>{{total_unpaid}}</td>
+        </tr>
+      </tbody>
+    </table>
+  {{else}}
+  <div class="total-unpaid-container">
+    未还款总金额: <span>{{total_unpaid}}</span>
+  </div>
+  {{/if}}
+  <table class="ui celled padded table">
+    <thead>
+      <tr><th class="single line">客户经理</th>
+      <th>借款客户</th>
+      <th>金额</th>
+      {{#if history_route}}
+      <th>到期时间</th>
+      <th>还款时间</th>
+      {{else}}
+      <th>到期时间</th>
+      <th>签发人</th>
+      {{#if is_gm}}
+      <th>已还款</th>
+      {{/if}}
+      {{/if}}
+    </tr></thead>
+    <tbody>
+      {{#each total_payments}}
+      <tr class="selectable {{#if odd}}warning{{/if}}">
+        <td>
+          <a href="/detail/search/pm/{{product_manager}}">{{product_manager}}</a>
+        </td>
+        <td class="single line">
+          <a href="/detail/search/customer/{{customer}}">{{customer}}</a>
+        </td>
+        <td>
+          {{#if history_route}}
+          <div class="history_amount">{{amount}}</div>
+          {{else}}
+          <div class="{{#if is_gm}}edit-amount{{/if}}">{{amount}}</div>
+          <div class="amount-hidden-block" data-id="{{id}}">
+            <input class="input-amount" value="{{amount}}"><br>
+            <input type="password" class="add-password" placeholder="密码"><br>
+            <div class="ui small error message"></div>
+            <button class="confirm-edit-btn ui mini button">确认</button>
+            <button class="cancel-edit-btn ui mini button">取消</button>
+          </div>
+          {{/if}}
+        </td>
+        {{#if history_route}}
+        <td class='table-date'>{{formattedDate}}</td>
+        <td class='table-date'>{{formattedPaidDate}}</td>
+        {{else}}
+        <td>
+          <div class='table-date {{#if pastDue}}pastDue{{/if}} {{#if today}}today{{/if}} {{#if is_gm}}edit-date{{/if}}'>
+            {{formattedDate}}
+            {{#if pastDue}}
+              (逾期{{pastDueDays}}天)
+            {{/if}}
+          </div>
+          <div class="date-hidden-block" data-id="{{id}}">
+            <input class="edit-date-input" type="text"><br>
+            <input type="password" class="date-edit-password" placeholder="密码"><br><br>
+            <div class="ui small error message"></div>
+            <button class="confirm-date-edit-btn ui mini button">确认</button>
+            <button class="cancel-date-edit-btn ui mini button">取消</button>
+          </div>
+        </td>
+        <td>
+          <a href="/detail/search/pm/{{addBy}}">{{addBy}}</a>
+        </td>
+        {{#if is_gm}}
+        <td>
+          <div class="ui fitted checkbox paid-checkbox" data-id="{{id}}">
+            {{#if paid}}
+            <input type="checkbox" disabled checked>
+            {{else}}
+            <input type="checkbox">
+            {{/if}}
+            <label></label>
+          </div>
+        </td>
+        {{/if}}
+        {{/if}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <div class="ui small modal confirm-modal">
+    {{#each active_item}}
+      <div class="ui table">
+        <thead><tr>
+          <th>客户经理</th>
+          <th>借款客户</th>
+          <th>金额</th>
+          <th>到期时间</th>
+          <th>签发人</th>
+        </tr></thead>
+
+        <tbody>
+          <tr>
+            <td>{{product_manager}}</td>
+            <td>{{customer}}</td>
+            <td>{{amount}}</td>
+            <td>{{formattedDate}}</td>
+            <td>{{addBy}}</td>
+          </tr>
+        </tbody>
+
+      </div>
+    {{/each}}
+    <div class="ui fluid action input">
+      <input type="password" id='confirm-input' placeholder="输入密码">
+      <button class="ui button" id="confirm-btn">确认</button>
+    </div>
+    <div class="ui red message error-msg"></div>
+  </div>
+</template>

@@ -1,0 +1,7 @@
+.search-date-input,.search-pm-input,.search-customer-input {
+  display:none;
+}
+
+.shown {
+  display:inline-block !important;
+}

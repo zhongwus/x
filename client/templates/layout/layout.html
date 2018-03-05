@@ -1,0 +1,11 @@
+<template name='layout'>
+  {{> searchBar}}
+  {{#if loading}}
+  <div class="loading">
+    <div class="ui active loader inverted text">请稍后</div>
+  </div>
+  {{/if}}
+  <div class="content">
+    {{> yield}}
+  </div>
+</template>
